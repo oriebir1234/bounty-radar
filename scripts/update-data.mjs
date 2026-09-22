@@ -76,17 +76,6 @@ async function classifySuperteamListing(slug) {
     }
     const html = await res.text();
 
-    // LOG TEMPORÁRIO DE DEPURAÇÃO — ajuda a entender o que o GitHub Actions
-    // está realmente recebendo dessa página (pode ser diferente do que se vê
-    // testando manualmente). Remover depois que o bug de região for resolvido.
-    console.log(
-      `    [debug] ${slug}: html.length=${html.length} ` +
-      `hasRegionsSubstring=${html.includes('/earn/regions/')} ` +
-      `hasSkillHref=${/earn\/skill\//i.test(html)} ` +
-      `hasSkillsNeeded=${/SKILLS NEEDED/i.test(html)} ` +
-      `hasOnlyOpenPhrase=${/only open for people in/i.test(html)}`
-    );
-
     // Confirma que a página realmente carregou o conteúdo do listing (não uma
     // página de erro/challenge) antes de confiar em qualquer coisa nela.
     const looksLikeRealListingPage = /earn\/skill\//i.test(html) || /SKILLS NEEDED/i.test(html);
@@ -95,9 +84,15 @@ async function classifySuperteamListing(slug) {
       return out;
     }
 
-    const regionLinkMatch = html.match(/href="[^"]*\/earn\/regions\/([a-z0-9-]+)"/i);
-    if (regionLinkMatch) {
-      out.region = regionLinkMatch[1]
+    // O link pra página da região restrita (ex: /earn/regions/ukraine) às vezes
+    // vem dentro de outro tipo de atributo/estrutura, não sempre em href="...".
+    // Por isso procuramos o padrão direto no HTML, sem depender de estar dentro
+    // de um href="" literal — isso foi confirmado com logs reais do GitHub
+    // Actions: o texto "/earn/regions/<pais>" está lá mesmo quando a regex
+    // baseada em href="" não casava.
+    const regionMatch = html.match(/\/earn\/regions\/([a-z0-9-]+)/i);
+    if (regionMatch) {
+      out.region = regionMatch[1]
         .split('-')
         .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
         .join(' ');
@@ -105,7 +100,7 @@ async function classifySuperteamListing(slug) {
       out.region = 'Global';
     }
 
-    const skillMatches = [...html.matchAll(/href="[^"]*\/earn\/skill\/([a-z0-9-]+)"/gi)];
+    const skillMatches = [...html.matchAll(/\/earn\/skill\/([a-z0-9-]+)/gi)];
     const skills = [...new Set(skillMatches.map((m) => m[1].toLowerCase()))];
     if (skills.some((s) => s.includes('content'))) out.category = 'Content';
     else if (skills.some((s) => s.includes('design'))) out.category = 'Design';
