@@ -319,6 +319,17 @@ async function fetchFirstDollar(existing) {
       return bounties;
     }
 
+    // LOG TEMPORÁRIO DE DEPURAÇÃO — pra ver os nomes reais dos campos (reward,
+    // empresa, prazo) e corrigir o mapeamento abaixo. Remover depois.
+    console.log(
+      '  [debug-fd] chaves do 1o item:',
+      JSON.stringify(Object.keys(items[0]))
+    );
+    console.log(
+      '  [debug-fd] 1o item completo:',
+      JSON.stringify(items[0]).slice(0, 2000)
+    );
+
     for (const item of items) {
       const slug = item.slug || item.id || item.title;
       if (!slug) continue;
@@ -448,43 +459,81 @@ async function syncTelegramSubscribers(state) {
   }
 }
 
-async function sendTelegramNotification(newBounties, chatIds) {
+// Envia um texto já pronto pra todo mundo inscrito. Usado tanto pro aviso de
+// bounty novo quanto pra lista de bounties abertos que vai logo em seguida.
+async function sendTelegramText(text, chatIds, label) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   if (!token) {
-    console.log('  [telegram] TELEGRAM_BOT_TOKEN não configurado — pulando notificação.');
+    console.log('  [telegram] TELEGRAM_BOT_TOKEN não configurado — pulando envio.');
     return;
   }
   if (!chatIds.length) {
-    console.log('  [telegram] nenhum inscrito ainda — pulando notificação.');
+    console.log('  [telegram] nenhum inscrito ainda — pulando envio.');
     return;
   }
 
-  const shown = newBounties.slice(0, 15);
-  const lines = shown.map((b) => {
-    const ptTag = isPtExplicitBounty(b) ? ' [PT]' : '';
-    const reward = b.reward != null ? `${b.reward} ${b.currency || ''}`.trim() : 'valor não informado';
-    return `• ${b.title}${ptTag}\n  ${reward} — ${b.sponsor || ''}\n  ${b.url}`;
-  });
-  const extra = newBounties.length > shown.length
-    ? `\n\n…e mais ${newBounties.length - shown.length} bounty(s) novo(s).`
-    : '';
-  const text = `🆕 ${newBounties.length} bounty(s) novo(s) no Bounty Radar:\n\n${lines.join('\n\n')}${extra}`;
+  // Telegram limita mensagens a 4096 caracteres.
+  const trimmed = text.length > 4000 ? text.slice(0, 3970) + '\n\n(…lista cortada, cabe mais no site)' : text;
 
   for (const chatId of chatIds) {
     try {
       const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ chat_id: chatId, text, disable_web_page_preview: true }),
+        body: JSON.stringify({ chat_id: chatId, text: trimmed, disable_web_page_preview: true }),
       });
       if (!res.ok) {
-        console.error(`  [telegram] falha ao notificar ${chatId}:`, res.status, await res.text());
+        console.error(`  [telegram] falha ao enviar ${label || 'mensagem'} pra ${chatId}:`, res.status, await res.text());
       }
     } catch (err) {
-      console.error(`  [telegram] erro ao notificar ${chatId}:`, err.message);
+      console.error(`  [telegram] erro ao enviar ${label || 'mensagem'} pra ${chatId}:`, err.message);
     }
   }
-  console.log(`  [telegram] notificação enviada pra ${chatIds.length} inscrito(s).`);
+  console.log(`  [telegram] ${label || 'mensagem'} enviada pra ${chatIds.length} inscrito(s).`);
+}
+
+function formatBountyLine(b) {
+  const ptTag = isPtExplicitBounty(b) ? ' [PT]' : '';
+  const reward = b.reward != null ? `${b.reward} ${b.currency || ''}`.trim() : 'valor não informado';
+  const d = b.deadline ? new Date(b.deadline) : null;
+  const prazo = d && !isNaN(d.getTime())
+    ? `expira ${d.toLocaleDateString('pt-BR')}`
+    : 'sem prazo informado';
+  return `• ${b.title}${ptTag}\n  ${reward} — ${b.sponsor || ''} (${prazo})\n  ${b.url}`;
+}
+
+async function sendTelegramNotification(newBounties, chatIds) {
+  const shown = newBounties.slice(0, 15);
+  const lines = shown.map(formatBountyLine);
+  const extra = newBounties.length > shown.length
+    ? `\n\n…e mais ${newBounties.length - shown.length} bounty(s) novo(s).`
+    : '';
+  const text = `🆕 ${newBounties.length} bounty(s) novo(s) no Bounty Radar:\n\n${lines.join('\n\n')}${extra}`;
+  await sendTelegramText(text, chatIds, 'aviso de bounty(s) novo(s)');
+}
+
+// Lista completa dos bounties abertos e elegíveis, ordenada por prazo (quem
+// vence primeiro aparece primeiro; quem não tem prazo informado vai pro final).
+async function sendOpenBountiesList(openBounties, chatIds) {
+  if (!openBounties.length) return;
+
+  const withDeadline = [];
+  const withoutDeadline = [];
+  for (const b of openBounties) {
+    const d = b.deadline ? new Date(b.deadline) : null;
+    if (d && !isNaN(d.getTime())) withDeadline.push({ b, d });
+    else withoutDeadline.push(b);
+  }
+  withDeadline.sort((a, b) => a.d - b.d);
+  const ordered = [...withDeadline.map((x) => x.b), ...withoutDeadline];
+
+  const shown = ordered.slice(0, 20);
+  const lines = shown.map(formatBountyLine);
+  const extra = ordered.length > shown.length
+    ? `\n\n…e mais ${ordered.length - shown.length} bounty(s) aberto(s). Lista completa no site.`
+    : '';
+  const text = `📋 Bounties abertos agora (${ordered.length}), do prazo mais próximo pro mais distante:\n\n${lines.join('\n\n')}${extra}`;
+  await sendTelegramText(text, chatIds, 'lista de bounties abertos');
 }
 
 async function main() {
@@ -532,6 +581,10 @@ async function main() {
   if (newEligible.length) {
     console.log(`Encontrados ${newEligible.length} bounty(s) novo(s) elegível(is) — notificando no Telegram...`);
     await sendTelegramNotification(newEligible, subscribers.chatIds);
+
+    const openEligible = freshAll.filter((b) => b.status === 'OPEN' && isEligibleRegion(b.region));
+    console.log(`Enviando lista atualizada de ${openEligible.length} bounty(s) aberto(s), ordenada por prazo...`);
+    await sendOpenBountiesList(openEligible, subscribers.chatIds);
   } else {
     console.log('Nenhum bounty novo elegível nessa rodada — sem notificação.');
   }
