@@ -268,12 +268,19 @@ async function fetchFirstDollar(existing) {
   return bounties;
 }
 
-// ---------- Notificação no Telegram ----------
-// Manda UMA mensagem só (não uma por bounty) quando aparece bounty NOVO nesta
-// rodada que já é elegível (Global ou Brasil/Portugal) e está OPEN. Precisa
-// dos secrets TELEGRAM_BOT_TOKEN e TELEGRAM_CHAT_ID configurados no repositório
-// (Settings → Secrets and variables → Actions). Se não estiverem configurados,
-// só avisa no log e segue em frente — nunca quebra a atualização do data.json.
+// ---------- Notificação no Telegram (multi-usuário) ----------
+// Qualquer pessoa pode se inscrever mandando qualquer mensagem pro bot (o site
+// tem um botão/link pra isso). A cada rodada, o script:
+//   1. Busca mensagens novas no bot via getUpdates (com offset, pra não reler
+//      mensagens antigas) e atualiza a lista de inscritos em subscribers.json.
+//      Quem manda "/stop" ou "parar" sai da lista.
+//   2. Se aparecer bounty novo elegível, manda a mesma notificação pra todo
+//      mundo que está na lista.
+// Só precisa do secret TELEGRAM_BOT_TOKEN configurado no repositório
+// (Settings → Secrets and variables → Actions). Sem ele, o script só avisa no
+// log e segue em frente — nunca quebra a atualização do data.json.
+
+const SUBSCRIBERS_PATH = new URL('../subscribers.json', import.meta.url);
 
 const PT_REGIONS = ['brazil', 'brasil', 'portugal'];
 
@@ -287,11 +294,89 @@ function isPtExplicitBounty(b) {
   return PT_REGIONS.includes(r) || b.language === 'pt_confirmed';
 }
 
-async function sendTelegramNotification(newBounties) {
+async function loadSubscribers() {
+  try {
+    const raw = await fs.readFile(SUBSCRIBERS_PATH, 'utf8');
+    const parsed = JSON.parse(raw);
+    return {
+      chatIds: Array.isArray(parsed.chatIds) ? parsed.chatIds : [],
+      lastUpdateId: typeof parsed.lastUpdateId === 'number' ? parsed.lastUpdateId : 0,
+    };
+  } catch {
+    return { chatIds: [], lastUpdateId: 0 };
+  }
+}
+
+async function syncTelegramSubscribers(state) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!token || !chatId) {
-    console.log('  [telegram] TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID não configurados — pulando notificação.');
+  if (!token) return state;
+
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${token}/getUpdates?offset=${state.lastUpdateId + 1}&timeout=0`
+    );
+    if (!res.ok) {
+      console.error('  [telegram] falha ao buscar novos inscritos:', res.status);
+      return state;
+    }
+    const json = await res.json();
+    if (!json.ok || !Array.isArray(json.result)) return state;
+
+    const chatIds = new Set(state.chatIds);
+    let maxUpdateId = state.lastUpdateId;
+    let added = 0;
+    let removed = 0;
+
+    for (const update of json.result) {
+      maxUpdateId = Math.max(maxUpdateId, update.update_id);
+      const msg = update.message;
+      if (!msg || !msg.chat) continue;
+      const chatId = msg.chat.id;
+      const text = (msg.text || '').trim().toLowerCase();
+
+      if (text === '/stop' || text === 'parar') {
+        if (chatIds.has(chatId)) {
+          chatIds.delete(chatId);
+          removed++;
+        }
+      } else if (!chatIds.has(chatId)) {
+        chatIds.add(chatId);
+        added++;
+        // Confirma a inscrição na hora, pra quem acabou de entrar já saber que funcionou.
+        try {
+          await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: '✅ Inscrito! Você vai receber uma mensagem aqui sempre que aparecer um bounty novo no Bounty Radar. Pra sair, manda "parar" a qualquer momento.',
+            }),
+          });
+        } catch {
+          // não crítico — a inscrição já foi salva de qualquer forma
+        }
+      }
+    }
+
+    if (added || removed) {
+      console.log(`  [telegram] inscritos: +${added} novo(s), -${removed} removido(s). Total: ${chatIds.size}.`);
+    }
+
+    return { chatIds: [...chatIds], lastUpdateId: maxUpdateId };
+  } catch (err) {
+    console.error('  [telegram] erro ao sincronizar inscritos:', err.message);
+    return state;
+  }
+}
+
+async function sendTelegramNotification(newBounties, chatIds) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  if (!token) {
+    console.log('  [telegram] TELEGRAM_BOT_TOKEN não configurado — pulando notificação.');
+    return;
+  }
+  if (!chatIds.length) {
+    console.log('  [telegram] nenhum inscrito ainda — pulando notificação.');
     return;
   }
 
@@ -306,24 +391,30 @@ async function sendTelegramNotification(newBounties) {
     : '';
   const text = `🆕 ${newBounties.length} bounty(s) novo(s) no Bounty Radar:\n\n${lines.join('\n\n')}${extra}`;
 
-  try {
-    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ chat_id: chatId, text, disable_web_page_preview: true }),
-    });
-    if (!res.ok) {
-      console.error('  [telegram] falha ao enviar notificação:', res.status, await res.text());
-    } else {
-      console.log(`  [telegram] notificação enviada (${newBounties.length} bounty(s)).`);
+  for (const chatId of chatIds) {
+    try {
+      const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ chat_id: chatId, text, disable_web_page_preview: true }),
+      });
+      if (!res.ok) {
+        console.error(`  [telegram] falha ao notificar ${chatId}:`, res.status, await res.text());
+      }
+    } catch (err) {
+      console.error(`  [telegram] erro ao notificar ${chatId}:`, err.message);
     }
-  } catch (err) {
-    console.error('  [telegram] erro ao enviar notificação:', err.message);
   }
+  console.log(`  [telegram] notificação enviada pra ${chatIds.length} inscrito(s).`);
 }
 
 async function main() {
   const existing = await loadExisting();
+
+  console.log('Sincronizando inscritos do Telegram...');
+  let subscribers = await loadSubscribers();
+  subscribers = await syncTelegramSubscribers(subscribers);
+  await fs.writeFile(SUBSCRIBERS_PATH, JSON.stringify(subscribers, null, 2) + '\n', 'utf8');
 
   console.log('Buscando Superteam Earn...');
   const superteam = await fetchSuperteam(existing);
@@ -361,7 +452,7 @@ async function main() {
 
   if (newEligible.length) {
     console.log(`Encontrados ${newEligible.length} bounty(s) novo(s) elegível(is) — notificando no Telegram...`);
-    await sendTelegramNotification(newEligible);
+    await sendTelegramNotification(newEligible, subscribers.chatIds);
   } else {
     console.log('Nenhum bounty novo elegível nessa rodada — sem notificação.');
   }
