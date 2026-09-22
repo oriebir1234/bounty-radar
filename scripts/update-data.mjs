@@ -261,13 +261,27 @@ async function fetchFirstDollar(existing) {
         `bountyMentionsCombined=${(combined.match(/bounty/gi) || []).length}`
       );
 
-      // Acha candidatos a array JSON de bounties: procura '[' e tenta parsear com
-      // bracket-matching; guarda os que parseiam como array de objetos com "title".
-      const candidates = [];
-      for (let i = 0; i < combined.length; i++) {
-        if (combined[i] !== '[') continue;
-        // bracket matching simples respeitando strings
-        let depth = 0, inStr = false, esc = false, j = i;
+      // Antes a gente exigia que o ARRAY inteiro (que envolve todas as campanhas)
+      // fosse um JSON válido isolado. Isso falha no formato RSC sempre que o
+      // array de verdade usa referências tipo "$23" pra objetos repetidos
+      // (comum p/ dedupe) — nesse caso só sobra de pé algum array menor e sem
+      // essas referências (ex: uma lista de "campanhas parecidas"/arquivadas),
+      // que aí vira, por engano, o "candidato" escolhido — foi o que aconteceu:
+      // pegamos campanhas antigas/erradas em vez da lista real "Explore Campaigns".
+      //
+      // Agora extraímos objeto por objeto: cada campanha tem sempre um "id" (uuid)
+      // seguido de "companyId" (uuid) — usamos isso como âncora e fazemos
+      // bracket-matching a partir dali. Isso funciona mesmo que o array-mãe não
+      // seja parseável, porque cada objeto individual normalmente continua
+      // inteiro (só objetos REPETIDOS entre campanhas é que viram referência).
+      const anchorRe = /\{"id":"[0-9a-f-]{36}","companyId":"[0-9a-f-]{36}"/g;
+      const starts = [];
+      let am;
+      while ((am = anchorRe.exec(combined))) starts.push(am.index);
+
+      const seenIds = new Set();
+      for (const start of starts) {
+        let depth = 0, inStr = false, esc = false, j = start;
         for (; j < combined.length; j++) {
           const c = combined[j];
           if (inStr) {
@@ -276,33 +290,35 @@ async function fetchFirstDollar(existing) {
             else if (c === '"') inStr = false;
           } else {
             if (c === '"') inStr = true;
-            else if (c === '[') depth++;
-            else if (c === ']') { depth--; if (depth === 0) break; }
+            else if (c === '{') depth++;
+            else if (c === '}') { depth--; if (depth === 0) break; }
           }
-          if (j - i > 200000) break; // trava de segurança
+          if (j - start > 20000) break; // trava de segurança
         }
         if (depth !== 0) continue;
-        const slice = combined.slice(i, j + 1);
-        if (slice.length < 40 || slice.length > 150000) continue;
-        if (!/"title"/i.test(slice)) continue;
+        const slice = combined.slice(start, j + 1);
         try {
-          const parsed = JSON.parse(slice);
-          if (Array.isArray(parsed) && parsed.length > 0 && parsed.every((x) => x && typeof x === 'object' && 'title' in x)) {
-            candidates.push(parsed);
+          const obj = JSON.parse(slice);
+          if (obj && typeof obj === 'object' && obj.title && obj.id && !seenIds.has(obj.id)) {
+            seenIds.add(obj.id);
+            items.push(obj);
           }
         } catch {
-          // não é JSON válido isolado (comum em RSC, refs tipo "$5") — ignora
+          // objeto ainda tinha alguma referência não resolvida — ignora esse
         }
       }
 
-      if (candidates.length) {
-        items = candidates.sort((a, b) => b.length - a.length)[0];
-        console.log(`  [debug-fd] achou ${candidates.length} array(s) candidato(s) via RSC; usando o maior com ${items.length} item(ns).`);
+      console.log(
+        `  [debug-fd] âncoras "id"+"companyId" encontradas: ${starts.length}; ` +
+        `objetos válidos com título: ${items.length}`
+      );
+      if (items.length) {
+        console.log('  [debug-fd] títulos encontrados:', JSON.stringify(items.map((x) => x.title)));
       } else {
         const bountyIdx = combined.search(/bounty/i);
         if (bountyIdx >= 0) {
           console.log(
-            '  [debug-fd] nenhum array JSON isolado encontrado; trecho ao redor da 1a menção de "bounty":',
+            '  [debug-fd] nenhum objeto de campanha encontrado; trecho ao redor da 1a menção de "bounty":',
             JSON.stringify(combined.slice(Math.max(0, bountyIdx - 300), bountyIdx + 1500))
           );
         } else {
