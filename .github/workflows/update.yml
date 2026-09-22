@@ -1,0 +1,37 @@
+name: Atualizar Bounty Radar
+
+on:
+  schedule:
+    # a cada 6 horas (horário UTC)
+    - cron: "20 */6 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Rodar script de atualização
+        run: node scripts/update-data.mjs
+
+      - name: Commitar data.json se mudou
+        run: |
+          if git diff --quiet -- data.json; then
+            echo "Nada mudou em data.json."
+            exit 0
+          fi
+          git config user.name "bounty-radar-bot"
+          git config user.email "actions@github.com"
+          git add data.json
+          git commit -m "chore: atualizar data.json [automatizado]"
+          git push
