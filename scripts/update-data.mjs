@@ -319,32 +319,33 @@ async function fetchFirstDollar(existing) {
       return bounties;
     }
 
-    // LOG TEMPORÁRIO DE DEPURAÇÃO — pra ver os nomes reais dos campos (reward,
-    // empresa, prazo) e corrigir o mapeamento abaixo. Remover depois.
-    console.log(
-      '  [debug-fd] chaves do 1o item:',
-      JSON.stringify(Object.keys(items[0]))
-    );
-    console.log(
-      '  [debug-fd] 1o item completo:',
-      JSON.stringify(items[0]).slice(0, 2000)
-    );
-
+    // Formato real (confirmado via log): cada item tem totalPrizePool +
+    // paymentTokenName (não "reward"/"amount"), e company só tem
+    // id/username/logoUrl (sem "name") — usamos o username como nome do
+    // patrocinador, formatado (bullbitdexhq -> Bullbitdexhq).
     for (const item of items) {
       const slug = item.slug || item.id || item.title;
       if (!slug) continue;
       const id = `firstdollar_${String(slug).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
       const prev = existing.get(id);
+
+      const sponsorRaw = item.company?.name || item.company?.username || item.companyName || item.sponsor || null;
+      const sponsor = sponsorRaw
+        ? String(sponsorRaw).replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
+        : 'First Dollar';
+
       bounties.push({
         id,
         source: 'firstdollar',
         title: item.title || item.name,
-        sponsor: item.company?.name || item.companyName || item.sponsor || 'First Dollar',
-        reward: item.reward ?? item.amount ?? item.rewardAmount ?? null,
-        currency: item.currency || 'USD',
+        sponsor,
+        reward: item.totalPrizePool ?? item.reward ?? item.amount ?? item.rewardAmount ?? null,
+        currency: item.paymentTokenName || item.currency || 'USD',
         deadline: item.deadline || item.deadlineText || null,
-        url: item.url || `https://app.firstdollar.money${item.path || ''}`,
-        status: 'OPEN',
+        url: item.slug
+          ? `https://app.firstdollar.money/bounties/${item.slug}`
+          : (item.url || `https://app.firstdollar.money${item.path || ''}`),
+        status: item.status && String(item.status).toLowerCase() !== 'open' ? 'CLOSED' : 'OPEN',
         region: prev?.region || 'Global',
         category: prev?.category || item.category || 'Other',
         ...(prev?.language ? { language: prev.language } : {}),
