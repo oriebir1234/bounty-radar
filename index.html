@@ -88,6 +88,15 @@
   .updated{font-size:.78rem; color:var(--ink-faint);}
   .updated b{color:var(--ink-soft); font-weight:500;}
 
+  .telegram-subscribe{
+    display:inline-flex; align-items:center; gap:6px; align-self:flex-start;
+    font-size:.82rem; font-weight:600; text-decoration:none;
+    padding:7px 14px; border-radius:99px; border:1px solid var(--accent);
+    color:var(--accent-ink); background:var(--accent);
+    box-shadow:var(--shadow); transition:filter .15s ease;
+  }
+  .telegram-subscribe:hover{filter:brightness(1.06);}
+
   .controls{display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:space-between;}
   .chips{display:flex; flex-wrap:wrap; gap:6px;}
   .chip{
@@ -193,6 +202,9 @@
       <h1>Bounty Radar</h1>
     </div>
     <div class="updated">Última verificação automática: <b id="lastCheck">—</b> &middot; <span id="totalCount">0</span> bounties abertos rastreados</div>
+    <a class="telegram-subscribe" href="https://t.me/BountyRadarOrie_bot?start=inscrever" target="_blank" rel="noopener">
+      🔔 Receber aviso no Telegram quando sair bounty novo
+    </a>
     <div class="controls">
       <div class="chips" id="platformChips">
         <button class="chip" data-platform="all" aria-pressed="true"><span class="dot"></span>Todas</button>
