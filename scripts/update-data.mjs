@@ -268,6 +268,60 @@ async function fetchFirstDollar(existing) {
   return bounties;
 }
 
+// ---------- Notificação no Telegram ----------
+// Manda UMA mensagem só (não uma por bounty) quando aparece bounty NOVO nesta
+// rodada que já é elegível (Global ou Brasil/Portugal) e está OPEN. Precisa
+// dos secrets TELEGRAM_BOT_TOKEN e TELEGRAM_CHAT_ID configurados no repositório
+// (Settings → Secrets and variables → Actions). Se não estiverem configurados,
+// só avisa no log e segue em frente — nunca quebra a atualização do data.json.
+
+const PT_REGIONS = ['brazil', 'brasil', 'portugal'];
+
+function isEligibleRegion(region) {
+  const r = String(region || '').toLowerCase();
+  return r === 'global' || PT_REGIONS.includes(r);
+}
+
+function isPtExplicitBounty(b) {
+  const r = String(b.region || '').toLowerCase();
+  return PT_REGIONS.includes(r) || b.language === 'pt_confirmed';
+}
+
+async function sendTelegramNotification(newBounties) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) {
+    console.log('  [telegram] TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID não configurados — pulando notificação.');
+    return;
+  }
+
+  const shown = newBounties.slice(0, 15);
+  const lines = shown.map((b) => {
+    const ptTag = isPtExplicitBounty(b) ? ' [PT]' : '';
+    const reward = b.reward != null ? `${b.reward} ${b.currency || ''}`.trim() : 'valor não informado';
+    return `• ${b.title}${ptTag}\n  ${reward} — ${b.sponsor || ''}\n  ${b.url}`;
+  });
+  const extra = newBounties.length > shown.length
+    ? `\n\n…e mais ${newBounties.length - shown.length} bounty(s) novo(s).`
+    : '';
+  const text = `🆕 ${newBounties.length} bounty(s) novo(s) no Bounty Radar:\n\n${lines.join('\n\n')}${extra}`;
+
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text, disable_web_page_preview: true }),
+    });
+    if (!res.ok) {
+      console.error('  [telegram] falha ao enviar notificação:', res.status, await res.text());
+    } else {
+      console.log(`  [telegram] notificação enviada (${newBounties.length} bounty(s)).`);
+    }
+  } catch (err) {
+    console.error('  [telegram] erro ao enviar notificação:', err.message);
+  }
+}
+
 async function main() {
   const existing = await loadExisting();
 
@@ -279,7 +333,15 @@ async function main() {
   const firstdollar = await fetchFirstDollar(existing);
   console.log(`  -> ${firstdollar.length} bounties`);
 
-  const freshIds = new Set([...superteam, ...firstdollar].map((b) => b.id));
+  const freshAll = [...superteam, ...firstdollar];
+
+  // Bounty "novo de verdade" = não existia na rodada anterior (não é só
+  // reclassificação de um "Unknown" virando "Global", por exemplo).
+  const newEligible = freshAll.filter(
+    (b) => !existing.has(b.id) && b.status === 'OPEN' && isEligibleRegion(b.region)
+  );
+
+  const freshIds = new Set(freshAll.map((b) => b.id));
   const closed = [];
   for (const [id, b] of existing) {
     if (!freshIds.has(id) && b.status !== 'CLOSED') {
@@ -287,7 +349,7 @@ async function main() {
     }
   }
 
-  const allBounties = [...superteam, ...firstdollar, ...closed];
+  const allBounties = [...freshAll, ...closed];
 
   const payload = {
     bounties: allBounties,
@@ -296,6 +358,13 @@ async function main() {
 
   await fs.writeFile(DATA_PATH, JSON.stringify(payload, null, 2) + '\n', 'utf8');
   console.log(`data.json atualizado: ${allBounties.length} bounties (${closed.length} marcados como CLOSED).`);
+
+  if (newEligible.length) {
+    console.log(`Encontrados ${newEligible.length} bounty(s) novo(s) elegível(is) — notificando no Telegram...`);
+    await sendTelegramNotification(newEligible);
+  } else {
+    console.log('Nenhum bounty novo elegível nessa rodada — sem notificação.');
+  }
 }
 
 main().catch((err) => {
