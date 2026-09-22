@@ -70,8 +70,22 @@ async function classifySuperteamListing(slug) {
     const res = await fetch(`https://superteam.fun/earn/listing/${slug}`, {
       headers: { 'user-agent': 'Mozilla/5.0 (bounty-radar bot)' },
     });
-    if (!res.ok) return out;
+    if (!res.ok) {
+      console.log(`    [debug] ${slug}: HTTP ${res.status}`);
+      return out;
+    }
     const html = await res.text();
+
+    // LOG TEMPORÁRIO DE DEPURAÇÃO — ajuda a entender o que o GitHub Actions
+    // está realmente recebendo dessa página (pode ser diferente do que se vê
+    // testando manualmente). Remover depois que o bug de região for resolvido.
+    console.log(
+      `    [debug] ${slug}: html.length=${html.length} ` +
+      `hasRegionsSubstring=${html.includes('/earn/regions/')} ` +
+      `hasSkillHref=${/earn\/skill\//i.test(html)} ` +
+      `hasSkillsNeeded=${/SKILLS NEEDED/i.test(html)} ` +
+      `hasOnlyOpenPhrase=${/only open for people in/i.test(html)}`
+    );
 
     // Confirma que a página realmente carregou o conteúdo do listing (não uma
     // página de erro/challenge) antes de confiar em qualquer coisa nela.
