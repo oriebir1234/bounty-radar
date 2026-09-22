@@ -194,6 +194,22 @@ async function fetchFirstDollar(existing) {
     }
     const html = await res.text();
 
+    // LOG TEMPORÁRIO DE DEPURAÇÃO — pra entender por que a extração de bounties
+    // do First Dollar está falhando. Remover depois de resolvido.
+    console.log(
+      `  [debug-fd] html.length=${html.length} ` +
+      `hasNextData=${html.includes('__NEXT_DATA__')} ` +
+      `hasNextF=${html.includes('self.__next_f')} ` +
+      `bountyMentions=${(html.match(/bounty/gi) || []).length}`
+    );
+    if (!html.includes('__NEXT_DATA__')) {
+      // Não achou o jeito que a gente esperava — imprime um pedaço do HTML pra
+      // eu conseguir ver o formato real (só as primeiras/últimas linhas de
+      // <script>, evitando poluir o log com o resto da página).
+      const scriptTags = [...html.matchAll(/<script[^>]*>/gi)].slice(0, 10).map((m) => m[0]);
+      console.log('  [debug-fd] primeiras tags <script> encontradas:', JSON.stringify(scriptTags));
+    }
+
     let raw = null;
     const nextDataMatch = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
     if (nextDataMatch) {
