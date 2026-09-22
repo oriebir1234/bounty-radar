@@ -24,17 +24,16 @@ jobs:
       - name: Rodar script de atualização
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: node scripts/update-data.mjs
 
-      - name: Commitar data.json se mudou
+      - name: Commitar data.json e subscribers.json se mudou
         run: |
-          if git diff --quiet -- data.json; then
-            echo "Nada mudou em data.json."
+          if git diff --quiet -- data.json subscribers.json; then
+            echo "Nada mudou."
             exit 0
           fi
           git config user.name "bounty-radar-bot"
           git config user.email "actions@github.com"
-          git add data.json
-          git commit -m "chore: atualizar data.json [automatizado]"
+          git add data.json subscribers.json
+          git commit -m "chore: atualizar data.json/subscribers.json [automatizado]"
           git push
