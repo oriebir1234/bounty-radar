@@ -202,14 +202,6 @@ async function fetchFirstDollar(existing) {
       `hasNextF=${html.includes('self.__next_f')} ` +
       `bountyMentions=${(html.match(/bounty/gi) || []).length}`
     );
-    if (!html.includes('__NEXT_DATA__')) {
-      // Não achou o jeito que a gente esperava — imprime um pedaço do HTML pra
-      // eu conseguir ver o formato real (só as primeiras/últimas linhas de
-      // <script>, evitando poluir o log com o resto da página).
-      const scriptTags = [...html.matchAll(/<script[^>]*>/gi)].slice(0, 10).map((m) => m[0]);
-      console.log('  [debug-fd] primeiras tags <script> encontradas:', JSON.stringify(scriptTags));
-    }
-
     let raw = null;
     const nextDataMatch = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
     if (nextDataMatch) {
@@ -245,6 +237,77 @@ async function fetchFirstDollar(existing) {
       if (found.length) {
         // pega o maior array candidato
         items = found.sort((a, b) => b.length - a.length)[0];
+      }
+    }
+
+    // Site usa Next.js App Router (RSC streaming), não __NEXT_DATA__. Os dados reais
+    // vêm espalhados em várias chamadas self.__next_f.push([id, "pedaço de string"]).
+    // Juntamos todos os pedaços (decodificando os escapes JS) e tentamos achar, dentro
+    // do texto combinado, um array JSON com objetos de bounty (bracket-matching manual,
+    // já que não é um JSON único válido do início ao fim).
+    if (!items.length && html.includes('self.__next_f')) {
+      const pushMatches = [...html.matchAll(/self\.__next_f\.push\(\[(\d+),("(?:[^"\\]|\\.)*")\]\)/gs)];
+      let combined = '';
+      for (const m of pushMatches) {
+        try {
+          combined += JSON.parse(m[2]);
+        } catch {
+          // ignora pedaço que não decodifica
+        }
+      }
+
+      console.log(
+        `  [debug-fd] pushes=${pushMatches.length} combinedLen=${combined.length} ` +
+        `bountyMentionsCombined=${(combined.match(/bounty/gi) || []).length}`
+      );
+
+      // Acha candidatos a array JSON de bounties: procura '[' e tenta parsear com
+      // bracket-matching; guarda os que parseiam como array de objetos com "title".
+      const candidates = [];
+      for (let i = 0; i < combined.length; i++) {
+        if (combined[i] !== '[') continue;
+        // bracket matching simples respeitando strings
+        let depth = 0, inStr = false, esc = false, j = i;
+        for (; j < combined.length; j++) {
+          const c = combined[j];
+          if (inStr) {
+            if (esc) esc = false;
+            else if (c === '\\') esc = true;
+            else if (c === '"') inStr = false;
+          } else {
+            if (c === '"') inStr = true;
+            else if (c === '[') depth++;
+            else if (c === ']') { depth--; if (depth === 0) break; }
+          }
+          if (j - i > 200000) break; // trava de segurança
+        }
+        if (depth !== 0) continue;
+        const slice = combined.slice(i, j + 1);
+        if (slice.length < 40 || slice.length > 150000) continue;
+        if (!/"title"/i.test(slice)) continue;
+        try {
+          const parsed = JSON.parse(slice);
+          if (Array.isArray(parsed) && parsed.length > 0 && parsed.every((x) => x && typeof x === 'object' && 'title' in x)) {
+            candidates.push(parsed);
+          }
+        } catch {
+          // não é JSON válido isolado (comum em RSC, refs tipo "$5") — ignora
+        }
+      }
+
+      if (candidates.length) {
+        items = candidates.sort((a, b) => b.length - a.length)[0];
+        console.log(`  [debug-fd] achou ${candidates.length} array(s) candidato(s) via RSC; usando o maior com ${items.length} item(ns).`);
+      } else {
+        const bountyIdx = combined.search(/bounty/i);
+        if (bountyIdx >= 0) {
+          console.log(
+            '  [debug-fd] nenhum array JSON isolado encontrado; trecho ao redor da 1a menção de "bounty":',
+            JSON.stringify(combined.slice(Math.max(0, bountyIdx - 300), bountyIdx + 1500))
+          );
+        } else {
+          console.log('  [debug-fd] nenhuma menção de "bounty" nos chunks combinados (raro).');
+        }
       }
     }
 
