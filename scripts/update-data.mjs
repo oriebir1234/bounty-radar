@@ -194,136 +194,59 @@ async function fetchFirstDollar(existing) {
     }
     const html = await res.text();
 
-    // LOG TEMPORÁRIO DE DEPURAÇÃO — pra entender por que a extração de bounties
-    // do First Dollar está falhando. Remover depois de resolvido.
-    console.log(
-      `  [debug-fd] html.length=${html.length} ` +
-      `hasNextData=${html.includes('__NEXT_DATA__')} ` +
-      `hasNextF=${html.includes('self.__next_f')} ` +
-      `bountyMentions=${(html.match(/bounty/gi) || []).length}`
-    );
-    let raw = null;
-    const nextDataMatch = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
-    if (nextDataMatch) {
+    // Site é Next.js App Router (RSC streaming): os dados reais vêm espalhados em
+    // várias chamadas self.__next_f.push([id, "pedaço de string"]). Juntamos todos
+    // os pedaços (decodificando os escapes JS) pra reconstruir o texto completo.
+    let combined = '';
+    for (const m of html.matchAll(/self\.__next_f\.push\(\[(\d+),("(?:[^"\\]|\\.)*")\]\)/gs)) {
       try {
-        raw = JSON.parse(nextDataMatch[1]);
-      } catch (err) {
-        console.error('[firstdollar] __NEXT_DATA__ não é JSON válido:', err.message);
+        combined += JSON.parse(m[2]);
+      } catch {
+        // ignora pedaço que não decodifica
       }
     }
 
-    let items = [];
-    if (raw) {
-      // Procura, em qualquer lugar da árvore, um array de objetos que pareça bounty
-      // (tem "title" e algo de reward/company). Isso é uma heurística propositalmente
-      // frouxa porque não temos acesso ao HTML real pra confirmar o formato exato.
-      const found = [];
-      const seen = new Set();
-      function walk(node, depth) {
-        if (!node || typeof node !== 'object' || depth > 8) return;
-        if (seen.has(node)) return;
-        seen.add(node);
-        if (Array.isArray(node)) {
-          const looksLikeBounties = node.length > 0 && node.every(
-            (x) => x && typeof x === 'object' && ('title' in x || 'name' in x)
-          );
-          if (looksLikeBounties) found.push(node);
-          for (const child of node) walk(child, depth + 1);
+    // Cada seção do site (Explore Campaigns, Radar Room) embute a resposta da
+    // API "dehidratada" (react-query) nesse texto, sempre no formato
+    // {"success":true,"data":[ ...objetos completos... ]}. A gente acha TODAS as
+    // ocorrências (pode ter mais de uma seção) e junta os itens de todas, sem
+    // duplicar por id.
+    const items = [];
+    const marker = '"success":true,"data":[';
+    const seenIds = new Set();
+    let searchPos = 0;
+    while (true) {
+      const mi = combined.indexOf(marker, searchPos);
+      if (mi === -1) break;
+      const arrStart = mi + marker.length - 1; // posição do '['
+      let depth = 0, inStr = false, esc = false, j = arrStart;
+      for (; j < combined.length; j++) {
+        const c = combined[j];
+        if (inStr) {
+          if (esc) esc = false;
+          else if (c === '\\') esc = true;
+          else if (c === '"') inStr = false;
         } else {
-          for (const key of Object.keys(node)) walk(node[key], depth + 1);
+          if (c === '"') inStr = true;
+          else if (c === '[') depth++;
+          else if (c === ']') { depth--; if (depth === 0) break; }
         }
+        if (j - arrStart > 1000000) break; // trava de segurança
       }
-      walk(raw, 0);
-      if (found.length) {
-        // pega o maior array candidato
-        items = found.sort((a, b) => b.length - a.length)[0];
-      }
-    }
-
-    // Site usa Next.js App Router (RSC streaming), não __NEXT_DATA__. Os dados reais
-    // vêm espalhados em várias chamadas self.__next_f.push([id, "pedaço de string"]).
-    // Juntamos todos os pedaços (decodificando os escapes JS) e tentamos achar, dentro
-    // do texto combinado, um array JSON com objetos de bounty (bracket-matching manual,
-    // já que não é um JSON único válido do início ao fim).
-    if (!items.length && html.includes('self.__next_f')) {
-      const pushMatches = [...html.matchAll(/self\.__next_f\.push\(\[(\d+),("(?:[^"\\]|\\.)*")\]\)/gs)];
-      let combined = '';
-      for (const m of pushMatches) {
-        try {
-          combined += JSON.parse(m[2]);
-        } catch {
-          // ignora pedaço que não decodifica
-        }
-      }
-
-      console.log(
-        `  [debug-fd] pushes=${pushMatches.length} combinedLen=${combined.length} ` +
-        `bountyMentionsCombined=${(combined.match(/bounty/gi) || []).length}`
-      );
-
-      // Antes a gente exigia que o ARRAY inteiro (que envolve todas as campanhas)
-      // fosse um JSON válido isolado. Isso falha no formato RSC sempre que o
-      // array de verdade usa referências tipo "$23" pra objetos repetidos
-      // (comum p/ dedupe) — nesse caso só sobra de pé algum array menor e sem
-      // essas referências (ex: uma lista de "campanhas parecidas"/arquivadas),
-      // que aí vira, por engano, o "candidato" escolhido — foi o que aconteceu:
-      // pegamos campanhas antigas/erradas em vez da lista real "Explore Campaigns".
-      //
-      // Agora extraímos objeto por objeto: cada campanha tem sempre um "id" (uuid)
-      // seguido de "companyId" (uuid) — usamos isso como âncora e fazemos
-      // bracket-matching a partir dali. Isso funciona mesmo que o array-mãe não
-      // seja parseável, porque cada objeto individual normalmente continua
-      // inteiro (só objetos REPETIDOS entre campanhas é que viram referência).
-      const anchorRe = /\{"id":"[0-9a-f-]{36}","companyId":"[0-9a-f-]{36}"/g;
-      const starts = [];
-      let am;
-      while ((am = anchorRe.exec(combined))) starts.push(am.index);
-
-      const seenIds = new Set();
-      for (const start of starts) {
-        let depth = 0, inStr = false, esc = false, j = start;
-        for (; j < combined.length; j++) {
-          const c = combined[j];
-          if (inStr) {
-            if (esc) esc = false;
-            else if (c === '\\') esc = true;
-            else if (c === '"') inStr = false;
-          } else {
-            if (c === '"') inStr = true;
-            else if (c === '{') depth++;
-            else if (c === '}') { depth--; if (depth === 0) break; }
+      searchPos = mi + marker.length;
+      if (depth !== 0) continue;
+      try {
+        const arr = JSON.parse(combined.slice(arrStart, j + 1));
+        if (Array.isArray(arr)) {
+          for (const obj of arr) {
+            if (obj && typeof obj === 'object' && obj.title && obj.id && !seenIds.has(obj.id)) {
+              seenIds.add(obj.id);
+              items.push(obj);
+            }
           }
-          if (j - start > 20000) break; // trava de segurança
         }
-        if (depth !== 0) continue;
-        const slice = combined.slice(start, j + 1);
-        try {
-          const obj = JSON.parse(slice);
-          if (obj && typeof obj === 'object' && obj.title && obj.id && !seenIds.has(obj.id)) {
-            seenIds.add(obj.id);
-            items.push(obj);
-          }
-        } catch {
-          // objeto ainda tinha alguma referência não resolvida — ignora esse
-        }
-      }
-
-      console.log(
-        `  [debug-fd] âncoras "id"+"companyId" encontradas: ${starts.length}; ` +
-        `objetos válidos com título: ${items.length}`
-      );
-      if (items.length) {
-        console.log('  [debug-fd] títulos encontrados:', JSON.stringify(items.map((x) => x.title)));
-      } else {
-        const bountyIdx = combined.search(/bounty/i);
-        if (bountyIdx >= 0) {
-          console.log(
-            '  [debug-fd] nenhum objeto de campanha encontrado; trecho ao redor da 1a menção de "bounty":',
-            JSON.stringify(combined.slice(Math.max(0, bountyIdx - 300), bountyIdx + 1500))
-          );
-        } else {
-          console.log('  [debug-fd] nenhuma menção de "bounty" nos chunks combinados (raro).');
-        }
+      } catch {
+        // esse bloco em particular não parseou isolado — ignora e segue pros outros
       }
     }
 
@@ -335,10 +258,17 @@ async function fetchFirstDollar(existing) {
       return bounties;
     }
 
-    // Formato real (confirmado via log): cada item tem totalPrizePool +
-    // paymentTokenName (não "reward"/"amount"), e company só tem
-    // id/username/logoUrl (sem "name") — usamos o username como nome do
-    // patrocinador, formatado (bullbitdexhq -> Bullbitdexhq).
+    console.log(`  [firstdollar] ${items.length} item(ns) encontrados (Campaigns + Radar Room).`);
+
+    // Formato real (confirmado inspecionando o site ao vivo): "Explore
+    // Campaigns" usa totalPrizePool (string) + paymentToken, submissionDeadline
+    // (não "deadline"), status "published"/"completed" (não "open"/"closed"), e
+    // um campo geoLocking próprio pra restrição de região ("GLOBAL", "India",
+    // etc) — exatamente o que precisamos pra aplicar a mesma regra "nunca
+    // mostra bounty de região que não dá pra participar" usada no Superteam.
+    // Já a Radar Room (schema mais antigo, sem geoLocking/category) usa
+    // totalPrizePool numérico + paymentTokenName, e company só tem
+    // id/username/logoUrl quando não tem "name" cadastrado.
     for (const item of items) {
       const slug = item.slug || item.id || item.title;
       if (!slug) continue;
@@ -350,20 +280,47 @@ async function fetchFirstDollar(existing) {
         ? String(sponsorRaw).replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
         : 'First Dollar';
 
+      const rewardRaw = item.totalPrizePool ?? item.reward ?? item.amount ?? item.rewardAmount ?? null;
+      const reward = rewardRaw != null && rewardRaw !== '' ? Number(rewardRaw) : null;
+      const currency = item.paymentToken || item.paymentTokenName || item.currency || 'USD';
+      const deadline = item.submissionDeadline || item.deadline || item.deadlineText || null;
+
+      const statusRaw = String(item.status || '').toLowerCase();
+      const isOpen = statusRaw === 'published' || statusRaw === 'open' || statusRaw === 'live' || statusRaw === '';
+
+      // "Nunca assume Global sem ter certeza" — mesma regra de segurança do
+      // Superteam. Se o campo geoLocking nem existe (Radar Room não tem esse
+      // conceito), assumimos Global; se existe mas vem vazio, fica "Unknown"
+      // (some da lista até a gente descobrir a região de verdade); se vem
+      // preenchido, usamos o valor.
+      let region;
+      if (!('geoLocking' in item)) {
+        region = 'Global';
+      } else if (!item.geoLocking) {
+        region = 'Unknown';
+      } else {
+        region = String(item.geoLocking)
+          .split(/[\s-]+/)
+          .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+          .join(' ');
+      }
+
+      const url = item.company?.username && item.slug
+        ? `https://app.firstdollar.money/company/${item.company.username}/bounty/${item.slug}`
+        : (item.url || 'https://app.firstdollar.money/bounties');
+
       bounties.push({
         id,
         source: 'firstdollar',
         title: item.title || item.name,
         sponsor,
-        reward: item.totalPrizePool ?? item.reward ?? item.amount ?? item.rewardAmount ?? null,
-        currency: item.paymentTokenName || item.currency || 'USD',
-        deadline: item.deadline || item.deadlineText || null,
-        url: item.slug
-          ? `https://app.firstdollar.money/bounties/${item.slug}`
-          : (item.url || `https://app.firstdollar.money${item.path || ''}`),
-        status: item.status && String(item.status).toLowerCase() !== 'open' ? 'CLOSED' : 'OPEN',
-        region: prev?.region || 'Global',
-        category: prev?.category || item.category || 'Other',
+        reward,
+        currency,
+        deadline,
+        url,
+        status: isOpen ? 'OPEN' : 'CLOSED',
+        region,
+        category: item.category || prev?.category || 'Other',
         ...(prev?.language ? { language: prev.language } : {}),
         firstSeenAt: prev?.firstSeenAt || nowIso(),
         lastSeenAt: nowIso(),
