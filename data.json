@@ -11,7 +11,7 @@
       "url": "https://superteam.fun/earn/listing/create-a-short-video-explainer-for-hisa-dollar5000-up-for-grabs",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:52:58.068Z",
-      "lastSeenAt": "2026-09-24T04:59:05.677Z",
+      "lastSeenAt": "2026-09-24T11:54:01.581Z",
       "region": "Nigeria",
       "category": "Content"
     },
@@ -26,7 +26,7 @@
       "url": "https://superteam.fun/earn/listing/road-to-colosseum-hackathon-build-your-mvp",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:52:58.942Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:01.581Z",
       "region": "Germany",
       "category": "Dev"
     },
@@ -41,7 +41,7 @@
       "url": "https://superteam.fun/earn/listing/get-a-realistic-dev-roadmap-for-your-project",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:01.582Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:01.581Z",
       "region": "Ukraine",
       "category": "Dev"
     },
@@ -56,7 +56,7 @@
       "url": "https://superteam.fun/earn/listing/disena-el-merch-oficial-de-el-encuentro-2026",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:02.457Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:01.581Z",
       "region": "Spain",
       "category": "Design"
     },
@@ -71,7 +71,7 @@
       "url": "https://superteam.fun/earn/listing/record-x-video-reaction-to-solana-ecosystem-news",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:03.428Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:01.581Z",
       "region": "Spain",
       "category": "Content"
     },
@@ -86,7 +86,7 @@
       "url": "https://superteam.fun/earn/listing/nectarfi-x-dominion-market",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:04.374Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:01.581Z",
       "region": "Global",
       "category": "Content"
     },
@@ -101,7 +101,7 @@
       "url": "https://superteam.fun/earn/listing/anti-brain-drain-content-bounty-colosseum-push",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:05.333Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:01.581Z",
       "region": "Nepal",
       "category": "Content"
     },
@@ -116,7 +116,7 @@
       "url": "https://superteam.fun/earn/listing/kriptok-league-trading-content-partner",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:05.349Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:01.581Z",
       "region": "Global",
       "category": "Content"
     },
@@ -131,7 +131,7 @@
       "url": "https://superteam.fun/earn/listing/stealf-bounty",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:06.325Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:01.581Z",
       "region": "Global",
       "category": "Content",
       "language": "english_required"
@@ -147,7 +147,7 @@
       "url": "https://superteam.fun/earn/listing/solana-summit-canada-creator-challenge-part-2",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:07.292Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:01.581Z",
       "region": "Global",
       "category": "Content"
     },
@@ -162,7 +162,98 @@
       "url": "https://superteam.fun/earn/listing/moonyfoundationtipcards",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:08.252Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:01.581Z",
+      "region": "Global",
+      "category": "Content"
+    },
+    {
+      "id": "superteam_share-your-most-memorable-solana-breakpoint-moment-on-x",
+      "source": "superteam",
+      "title": "Share Your Most Memorable Solana Breakpoint Moment on X",
+      "sponsor": "Superteam",
+      "reward": 5500,
+      "currency": "USDC",
+      "deadline": "2026-10-01T18:29:59.999Z",
+      "url": "https://superteam.fun/earn/listing/share-your-most-memorable-solana-breakpoint-moment-on-x",
+      "status": "OPEN",
+      "firstSeenAt": "2026-09-24T11:54:01.581Z",
+      "lastSeenAt": "2026-09-24T11:54:01.581Z",
+      "region": "Global",
+      "category": "Content"
+    },
+    {
+      "id": "superteam_breakpoint-london-starter-pack",
+      "source": "superteam",
+      "title": "Breakpoint London Starter Pack",
+      "sponsor": "Superteam",
+      "reward": 5500,
+      "currency": "USDC",
+      "deadline": "2026-10-01T18:29:59.999Z",
+      "url": "https://superteam.fun/earn/listing/breakpoint-london-starter-pack",
+      "status": "OPEN",
+      "firstSeenAt": "2026-09-24T11:54:02.455Z",
+      "lastSeenAt": "2026-09-24T11:54:02.455Z",
+      "region": "Global",
+      "category": "Content",
+      "language": "english_required"
+    },
+    {
+      "id": "superteam_hype-video-for-breakpoint-london",
+      "source": "superteam",
+      "title": "Hype Video for Breakpoint London",
+      "sponsor": "Superteam",
+      "reward": 5500,
+      "currency": "USDC",
+      "deadline": "2026-10-01T18:29:59.999Z",
+      "url": "https://superteam.fun/earn/listing/hype-video-for-breakpoint-london",
+      "status": "OPEN",
+      "firstSeenAt": "2026-09-24T11:54:03.351Z",
+      "lastSeenAt": "2026-09-24T11:54:03.351Z",
+      "region": "Global",
+      "category": "Content"
+    },
+    {
+      "id": "superteam_show-tokenization-in-2050-via-x-post-thread-or-short-video",
+      "source": "superteam",
+      "title": "Show Tokenization in 2050 via X Post, Thread, or Short Video",
+      "sponsor": "Superteam",
+      "reward": 5500,
+      "currency": "USDC",
+      "deadline": "2026-10-01T18:29:59.999Z",
+      "url": "https://superteam.fun/earn/listing/show-tokenization-in-2050-via-x-post-thread-or-short-video",
+      "status": "OPEN",
+      "firstSeenAt": "2026-09-24T11:54:04.260Z",
+      "lastSeenAt": "2026-09-24T11:54:04.260Z",
+      "region": "Global",
+      "category": "Content"
+    },
+    {
+      "id": "superteam_explain-market-tokenization-in-your-country",
+      "source": "superteam",
+      "title": "Explain Market Tokenization in Your Country",
+      "sponsor": "Superteam",
+      "reward": 5500,
+      "currency": "USDC",
+      "deadline": "2026-10-01T18:29:59.999Z",
+      "url": "https://superteam.fun/earn/listing/explain-market-tokenization-in-your-country",
+      "status": "OPEN",
+      "firstSeenAt": "2026-09-24T11:54:05.179Z",
+      "lastSeenAt": "2026-09-24T11:54:05.179Z",
+      "region": "Global",
+      "category": "Content"
+    },
+    {
+      "id": "superteam_explain-tokenization-supercycle-for-an-asset-category",
+      "source": "superteam",
+      "title": "Explain Tokenization Supercycle for an Asset Category",
+      "sponsor": "Superteam",
+      "reward": 5500,
+      "currency": "USDC",
+      "deadline": "2026-10-01T18:29:59.999Z",
+      "url": "https://superteam.fun/earn/listing/explain-tokenization-supercycle-for-an-asset-category",
+      "status": "OPEN",
+      "firstSeenAt": "2026-09-24T11:54:06.038Z",
+      "lastSeenAt": "2026-09-24T11:54:06.038Z",
       "region": "Global",
       "category": "Content"
     },
@@ -177,7 +268,7 @@
       "url": "https://superteam.fun/earn/listing/steve-agent-arena-launch-your-agent-and-win-500-usdc",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:08.289Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:07.252Z",
       "region": "Global",
       "category": "Content"
     },
@@ -192,7 +283,7 @@
       "url": "https://superteam.fun/earn/listing/colosseum-show-us-what-got",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:08.315Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:07.252Z",
       "region": "Netherlands",
       "category": "Dev",
       "language": "english_required"
@@ -208,7 +299,7 @@
       "url": "https://superteam.fun/earn/listing/introduce-web3-projects-to-segmento",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:15.125Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:07.252Z",
       "region": "Global",
       "category": "Content"
     },
@@ -223,7 +314,7 @@
       "url": "https://superteam.fun/earn/listing/build-and-demo-a-mermail-agent-skill",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:15.969Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:07.252Z",
       "region": "Global",
       "category": "Content",
       "language": "english_required"
@@ -239,7 +330,7 @@
       "url": "https://superteam.fun/earn/listing/blockchain-hack-warsaw-submissions",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:16.983Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:07.252Z",
       "region": "Poland",
       "category": "Dev"
     },
@@ -254,9 +345,24 @@
       "url": "https://superteam.fun/earn/listing/blockchain-hack-krakow-submissions",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:16.962Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:07.252Z",
       "region": "Poland",
       "category": "Dev"
+    },
+    {
+      "id": "superteam_create-x-content-on-mentioneds-team-trading-competition",
+      "source": "superteam",
+      "title": "Create X content on Mentioned's Team Trading Competition",
+      "sponsor": "Superteam Ireland",
+      "reward": 500,
+      "currency": "USDG",
+      "deadline": "2026-10-11T22:59:59.000Z",
+      "url": "https://superteam.fun/earn/listing/create-x-content-on-mentioneds-team-trading-competition",
+      "status": "OPEN",
+      "firstSeenAt": "2026-09-24T11:54:07.252Z",
+      "lastSeenAt": "2026-09-24T11:54:07.252Z",
+      "region": "Global",
+      "category": "Content"
     },
     {
       "id": "superteam_road-to-colosseum-builders-reflect-and-share",
@@ -269,7 +375,7 @@
       "url": "https://superteam.fun/earn/listing/road-to-colosseum-builders-reflect-and-share",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:24.023Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:08.127Z",
       "region": "Global",
       "category": "Content"
     },
@@ -284,7 +390,7 @@
       "url": "https://superteam.fun/earn/listing/pitch-and-demo-your-project-at-demo-day-in-kyiv",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:24.944Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:08.127Z",
       "region": "Ukraine",
       "category": "Design"
     },
@@ -299,7 +405,7 @@
       "url": "https://superteam.fun/earn/listing/pitch-and-demo-your-product-at-online-demo-day",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:25.963Z",
-      "lastSeenAt": "2026-09-24T04:59:05.678Z",
+      "lastSeenAt": "2026-09-24T11:54:08.127Z",
       "region": "Ukraine",
       "category": "Design"
     },
@@ -316,7 +422,7 @@
       "region": "Global",
       "category": "OTHER",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_armorcodex-contest",
@@ -331,7 +437,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_mobileapplaunch",
@@ -346,7 +452,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_create-video-content-for-avantis-challenges",
@@ -361,7 +467,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_kite-bounty-share-your-experience-with-stablecoins",
@@ -376,7 +482,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_basecommunitycall",
@@ -391,7 +497,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_bid-protocol",
@@ -406,7 +512,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_endless-domains-identity-os-waitlist-1",
@@ -421,7 +527,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_video-creator-bounty-for-codexero",
@@ -436,7 +542,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_gyndore-waitlist-referral-bounty",
@@ -451,7 +557,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_share-your-first-dollar-experience-on-ig",
@@ -466,7 +572,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_create-a-video-on-digital-silver",
@@ -481,7 +587,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_buildathon",
@@ -496,7 +602,7 @@
       "region": "India",
       "category": "OTHER",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_based-games-invite-bounty",
@@ -511,7 +617,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_yetch-creator-bounty",
@@ -526,7 +632,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_bitmor-nft-minting-bounty",
@@ -541,7 +647,7 @@
       "region": "Global",
       "category": "OTHER",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_what-is-polymarket-times-video-bounty",
@@ -556,7 +662,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_myrad-user-experience-bounty",
@@ -571,7 +677,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_user-research-bounty",
@@ -586,7 +692,7 @@
       "region": "Global",
       "category": "OTHER",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_idea-hunt-for-clawd-kitchen",
@@ -601,7 +707,7 @@
       "region": "Global",
       "category": "OTHER",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_raflux-community",
@@ -616,7 +722,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_ugc",
@@ -631,7 +737,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.897Z"
     },
     {
       "id": "firstdollar_zerion-feed-on-base",
@@ -646,7 +752,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_double-or-nothing-creators-bounty",
@@ -661,7 +767,7 @@
       "region": "Global",
       "category": "OTHER",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_first-dollar-bounty",
@@ -676,7 +782,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_based-india-year-end-recap-thread",
@@ -691,7 +797,7 @@
       "region": "India",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_launch-your-flix-fun-homepage",
@@ -706,7 +812,7 @@
       "region": "Global",
       "category": "DEVELOPMENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_corners-internet-bounty",
@@ -721,7 +827,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_integrate",
@@ -736,7 +842,7 @@
       "region": "Global",
       "category": "DEVELOPMENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_den-clipper-bounty",
@@ -751,7 +857,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_den-explainer-video-bounty",
@@ -766,7 +872,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_avantis",
@@ -781,7 +887,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_show-elsa-in-action-video",
@@ -796,7 +902,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_bounty-create-a-brand-kit-for-gmtribe",
@@ -811,7 +917,7 @@
       "region": "Global",
       "category": "DESIGN",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_heyelsa-ai-tweet-bounty",
@@ -826,7 +932,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_selfie-chill",
@@ -841,7 +947,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_capture-the-true-energy-of-being-based",
@@ -856,7 +962,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_bullbit-2",
@@ -871,7 +977,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_gridzero",
@@ -886,7 +992,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_waffles",
@@ -901,7 +1007,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_surfin",
@@ -916,7 +1022,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_bullbit",
@@ -931,7 +1037,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_dacoit-design",
@@ -946,7 +1052,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     },
     {
       "id": "firstdollar_first-dollar",
@@ -961,38 +1067,8 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-09-24T04:59:07.008Z"
-    },
-    {
-      "id": "superteam_business-track-milestone-pitch-deck-and-checkpoint",
-      "source": "superteam",
-      "title": "Business Track Milestone — Pitch Deck & Checkpoint",
-      "sponsor": "Superteam Ukraine",
-      "reward": 320,
-      "currency": "USDG",
-      "deadline": "2026-09-23T21:59:59.000Z",
-      "url": "https://superteam.fun/earn/listing/business-track-milestone-pitch-deck-and-checkpoint",
-      "status": "CLOSED",
-      "firstSeenAt": "2026-09-22T15:52:59.854Z",
-      "lastSeenAt": "2026-09-23T21:33:51.053Z",
-      "region": "Ukraine",
-      "category": "Content"
-    },
-    {
-      "id": "superteam_product-feedback-spout-finance",
-      "source": "superteam",
-      "title": "Spout Finance Product Feedback",
-      "sponsor": "Spout",
-      "reward": 1000,
-      "currency": "USDC",
-      "deadline": "2026-09-23T22:59:59.000Z",
-      "url": "https://superteam.fun/earn/listing/product-feedback-spout-finance",
-      "status": "CLOSED",
-      "firstSeenAt": "2026-09-22T15:53:00.708Z",
-      "lastSeenAt": "2026-09-23T21:33:51.053Z",
-      "region": "Global",
-      "category": "Other"
+      "lastSeenAt": "2026-09-24T11:54:08.898Z"
     }
   ],
-  "lastCheckedAt": "2026-09-24T04:59:07.008Z"
+  "lastCheckedAt": "2026-09-24T11:54:08.898Z"
 }
