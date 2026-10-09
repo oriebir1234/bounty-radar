@@ -11,24 +11,9 @@
       "url": "https://superteam.fun/earn/listing/vaultline-security-audit-grants-for-colosseum-projects-up-to-4000-usdc-each",
       "status": "OPEN",
       "firstSeenAt": "2026-10-09T13:26:41.839Z",
-      "lastSeenAt": "2026-10-09T13:26:41.839Z",
+      "lastSeenAt": "2026-10-09T22:42:56.577Z",
       "region": "Global",
       "category": "Dev"
-    },
-    {
-      "id": "superteam_create-twitter-post-about-the-stream-burn",
-      "source": "superteam",
-      "title": "Create twitter Post about the STREAM burn",
-      "sponsor": "Streamflow Finance",
-      "reward": 500,
-      "currency": "USDC",
-      "deadline": "2026-10-09T21:59:59.999Z",
-      "url": "https://superteam.fun/earn/listing/create-twitter-post-about-the-stream-burn",
-      "status": "OPEN",
-      "firstSeenAt": "2026-09-25T17:16:58.152Z",
-      "lastSeenAt": "2026-10-09T13:26:42.944Z",
-      "region": "Global",
-      "category": "Content"
     },
     {
       "id": "superteam_develop-solana-web3-project-mvp-and-pitch-for-ifk-uni-vibeathon",
@@ -41,7 +26,7 @@
       "url": "https://superteam.fun/earn/listing/develop-solana-web3-project-mvp-and-pitch-for-ifk-uni-vibeathon",
       "status": "OPEN",
       "firstSeenAt": "2026-10-06T18:26:49.137Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:56.577Z",
       "region": "Ukraine",
       "category": "Content",
       "language": "english_required"
@@ -57,7 +42,7 @@
       "url": "https://superteam.fun/earn/listing/blockchain-hack-krakow-submissions",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:16.962Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:56.577Z",
       "region": "Poland",
       "category": "Dev"
     },
@@ -72,7 +57,7 @@
       "url": "https://superteam.fun/earn/listing/blockchain-hack-warsaw-submissions",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:16.983Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:56.577Z",
       "region": "Poland",
       "category": "Dev"
     },
@@ -87,7 +72,7 @@
       "url": "https://superteam.fun/earn/listing/create-x-content-on-mentioneds-team-trading-competition",
       "status": "OPEN",
       "firstSeenAt": "2026-09-24T11:54:07.252Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:56.577Z",
       "region": "Global",
       "category": "Content"
     },
@@ -102,7 +87,7 @@
       "url": "https://superteam.fun/earn/listing/road-to-colosseum-builders-reflect-and-share",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:24.023Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:56.577Z",
       "region": "Global",
       "category": "Content"
     },
@@ -117,26 +102,25 @@
       "url": "https://superteam.fun/earn/listing/develop-solana-web3-project-mvp-and-pitch-for-kubg-uni-vibeathon",
       "status": "OPEN",
       "firstSeenAt": "2026-10-05T14:51:03.755Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:56.577Z",
       "region": "Ukraine",
       "category": "Content",
       "language": "english_required"
     },
     {
-      "id": "superteam_develop-solana-web3-project-mvp-and-pitch-for-knuba-uni-vibeathon",
+      "id": "superteam_arf-superteam-turkiye-university-track",
       "source": "superteam",
-      "title": "Develop Solana web3 Project MVP & Pitch for KNUBA UNI Vibeathon",
-      "sponsor": "Superteam Ukraine",
-      "reward": 500,
-      "currency": "USDC",
+      "title": "Arf × Superteam Türkiye — University Track",
+      "sponsor": "Superteam Turkey",
+      "reward": 2500,
+      "currency": "USDG",
       "deadline": "2026-10-14T20:59:59.000Z",
-      "url": "https://superteam.fun/earn/listing/develop-solana-web3-project-mvp-and-pitch-for-knuba-uni-vibeathon",
+      "url": "https://superteam.fun/earn/listing/arf-superteam-turkiye-university-track",
       "status": "OPEN",
-      "firstSeenAt": "2026-10-06T18:26:50.117Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
-      "region": "Ukraine",
-      "category": "Content",
-      "language": "english_required"
+      "firstSeenAt": "2026-10-09T22:42:56.577Z",
+      "lastSeenAt": "2026-10-09T22:42:56.577Z",
+      "region": "Turkey",
+      "category": "Dev"
     },
     {
       "id": "superteam_drive-attention-to-segmento-projects",
@@ -149,7 +133,7 @@
       "url": "https://superteam.fun/earn/listing/drive-attention-to-segmento-projects",
       "status": "OPEN",
       "firstSeenAt": "2026-09-28T14:05:19.720Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Balkan",
       "category": "Content"
     },
@@ -164,7 +148,7 @@
       "url": "https://superteam.fun/earn/listing/write-a-thread-or-long-post-price-comparison",
       "status": "OPEN",
       "firstSeenAt": "2026-10-05T14:51:04.590Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Global",
       "category": "Content"
     },
@@ -179,7 +163,7 @@
       "url": "https://superteam.fun/earn/listing/climb-our-reader-leaderboard-for-sepoct-2026",
       "status": "OPEN",
       "firstSeenAt": "2026-09-27T17:01:57.141Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Global",
       "category": "Content"
     },
@@ -194,7 +178,7 @@
       "url": "https://superteam.fun/earn/listing/write-a-post-dust-sweeper-how-social-quests-earn-you-xp",
       "status": "OPEN",
       "firstSeenAt": "2026-10-02T22:18:49.661Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Global",
       "category": "Content"
     },
@@ -209,7 +193,7 @@
       "url": "https://superteam.fun/earn/listing/make-a-video-season-zero-pump-the-pool-3-and-social-quests",
       "status": "OPEN",
       "firstSeenAt": "2026-09-30T12:42:53.710Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Global",
       "category": "Content"
     },
@@ -224,7 +208,7 @@
       "url": "https://superteam.fun/earn/listing/pitch-and-demo-your-product-at-online-demo-day",
       "status": "OPEN",
       "firstSeenAt": "2026-09-22T15:53:25.963Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Ukraine",
       "category": "Design"
     },
@@ -239,7 +223,7 @@
       "url": "https://superteam.fun/earn/listing/mobile",
       "status": "OPEN",
       "firstSeenAt": "2026-10-09T06:16:37.554Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Brazil",
       "category": "Dev"
     },
@@ -254,7 +238,7 @@
       "url": "https://superteam.fun/earn/listing/grow-rewards-make-your-first-move",
       "status": "OPEN",
       "firstSeenAt": "2026-09-29T05:49:28.600Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Global",
       "category": "Content"
     },
@@ -269,7 +253,7 @@
       "url": "https://superteam.fun/earn/listing/try-a-solana-project-and-give-useful-feedback-tokengems",
       "status": "OPEN",
       "firstSeenAt": "2026-09-28T14:05:20.661Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Global",
       "category": "Content"
     },
@@ -284,7 +268,7 @@
       "url": "https://superteam.fun/earn/listing/colosseum-founder-support-talk-to-5-users",
       "status": "OPEN",
       "firstSeenAt": "2026-10-06T18:26:51.007Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Netherlands",
       "category": "Dev",
       "language": "english_required"
@@ -300,7 +284,7 @@
       "url": "https://superteam.fun/earn/listing/bring-your-friends-to-segmento",
       "status": "OPEN",
       "firstSeenAt": "2026-10-05T14:51:04.635Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Balkan",
       "category": "Content"
     },
@@ -315,7 +299,7 @@
       "url": "https://superteam.fun/earn/listing/launch-and-trade-on-daejin-write-a-twitter-thread-and-create-a-market",
       "status": "OPEN",
       "firstSeenAt": "2026-09-30T05:39:27.432Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Global",
       "category": "Content"
     },
@@ -330,7 +314,7 @@
       "url": "https://superteam.fun/earn/listing/crea-contenido-para-promocionar-el-encuentro-2026",
       "status": "OPEN",
       "firstSeenAt": "2026-10-03T16:28:06.349Z",
-      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "lastSeenAt": "2026-10-09T22:42:57.780Z",
       "region": "Global",
       "category": "Content"
     },
@@ -347,7 +331,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-30T22:21:14.950Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_base-builder-roundtable-002",
@@ -362,7 +346,7 @@
       "region": "Global",
       "category": "DEVELOPMENT",
       "firstSeenAt": "2026-09-24T21:34:54.910Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_axisugccampaign",
@@ -377,7 +361,7 @@
       "region": "Global",
       "category": "OTHER",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_armorcodex-contest",
@@ -392,7 +376,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_mobileapplaunch",
@@ -407,7 +391,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_create-video-content-for-avantis-challenges",
@@ -422,7 +406,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_kite-bounty-share-your-experience-with-stablecoins",
@@ -437,7 +421,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_basecommunitycall",
@@ -452,7 +436,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_bid-protocol",
@@ -467,7 +451,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_endless-domains-identity-os-waitlist-1",
@@ -482,7 +466,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_video-creator-bounty-for-codexero",
@@ -497,7 +481,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_gyndore-waitlist-referral-bounty",
@@ -512,7 +496,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_share-your-first-dollar-experience-on-ig",
@@ -527,7 +511,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_create-a-video-on-digital-silver",
@@ -542,7 +526,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_buildathon",
@@ -557,7 +541,7 @@
       "region": "India",
       "category": "OTHER",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_based-games-invite-bounty",
@@ -572,7 +556,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_yetch-creator-bounty",
@@ -587,7 +571,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_bitmor-nft-minting-bounty",
@@ -602,7 +586,7 @@
       "region": "Global",
       "category": "OTHER",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_what-is-polymarket-times-video-bounty",
@@ -617,7 +601,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_myrad-user-experience-bounty",
@@ -632,7 +616,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_user-research-bounty",
@@ -647,7 +631,7 @@
       "region": "Global",
       "category": "OTHER",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_idea-hunt-for-clawd-kitchen",
@@ -662,7 +646,7 @@
       "region": "Global",
       "category": "OTHER",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_raflux-community",
@@ -677,7 +661,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_ugc",
@@ -692,7 +676,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_zerion-feed-on-base",
@@ -707,7 +691,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_double-or-nothing-creators-bounty",
@@ -722,7 +706,7 @@
       "region": "Global",
       "category": "OTHER",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_first-dollar-bounty",
@@ -737,7 +721,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_based-india-year-end-recap-thread",
@@ -752,7 +736,7 @@
       "region": "India",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_launch-your-flix-fun-homepage",
@@ -767,7 +751,7 @@
       "region": "Global",
       "category": "DEVELOPMENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_corners-internet-bounty",
@@ -782,7 +766,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_integrate",
@@ -797,7 +781,7 @@
       "region": "Global",
       "category": "DEVELOPMENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_den-clipper-bounty",
@@ -812,7 +796,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_den-explainer-video-bounty",
@@ -827,7 +811,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_avantis",
@@ -842,7 +826,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_show-elsa-in-action-video",
@@ -857,7 +841,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_bounty-create-a-brand-kit-for-gmtribe",
@@ -872,7 +856,7 @@
       "region": "Global",
       "category": "DESIGN",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_heyelsa-ai-tweet-bounty",
@@ -887,7 +871,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_selfie-chill",
@@ -902,7 +886,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_capture-the-true-energy-of-being-based",
@@ -917,7 +901,7 @@
       "region": "Global",
       "category": "CONTENT",
       "firstSeenAt": "2026-09-22T17:30:28.562Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.977Z"
     },
     {
       "id": "firstdollar_bullbit-2",
@@ -932,7 +916,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.978Z"
     },
     {
       "id": "firstdollar_gridzero",
@@ -947,7 +931,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.978Z"
     },
     {
       "id": "firstdollar_waffles",
@@ -962,7 +946,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.978Z"
     },
     {
       "id": "firstdollar_surfin",
@@ -977,7 +961,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.978Z"
     },
     {
       "id": "firstdollar_bullbit",
@@ -992,7 +976,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.978Z"
     },
     {
       "id": "firstdollar_dacoit-design",
@@ -1007,7 +991,7 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.978Z"
     },
     {
       "id": "firstdollar_first-dollar",
@@ -1022,8 +1006,39 @@
       "region": "Global",
       "category": "Other",
       "firstSeenAt": "2026-09-22T17:05:47.771Z",
-      "lastSeenAt": "2026-10-09T13:26:43.959Z"
+      "lastSeenAt": "2026-10-09T22:42:58.978Z"
+    },
+    {
+      "id": "superteam_create-twitter-post-about-the-stream-burn",
+      "source": "superteam",
+      "title": "Create twitter Post about the STREAM burn",
+      "sponsor": "Streamflow Finance",
+      "reward": 500,
+      "currency": "USDC",
+      "deadline": "2026-10-09T21:59:59.999Z",
+      "url": "https://superteam.fun/earn/listing/create-twitter-post-about-the-stream-burn",
+      "status": "CLOSED",
+      "firstSeenAt": "2026-09-25T17:16:58.152Z",
+      "lastSeenAt": "2026-10-09T13:26:42.944Z",
+      "region": "Global",
+      "category": "Content"
+    },
+    {
+      "id": "superteam_develop-solana-web3-project-mvp-and-pitch-for-knuba-uni-vibeathon",
+      "source": "superteam",
+      "title": "Develop Solana web3 Project MVP & Pitch for KNUBA UNI Vibeathon",
+      "sponsor": "Superteam Ukraine",
+      "reward": 500,
+      "currency": "USDC",
+      "deadline": "2026-10-14T20:59:59.000Z",
+      "url": "https://superteam.fun/earn/listing/develop-solana-web3-project-mvp-and-pitch-for-knuba-uni-vibeathon",
+      "status": "CLOSED",
+      "firstSeenAt": "2026-10-06T18:26:50.117Z",
+      "lastSeenAt": "2026-10-09T13:26:42.945Z",
+      "region": "Ukraine",
+      "category": "Content",
+      "language": "english_required"
     }
   ],
-  "lastCheckedAt": "2026-10-09T13:26:43.959Z"
+  "lastCheckedAt": "2026-10-09T22:42:58.978Z"
 }
